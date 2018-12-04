@@ -9,3 +9,5 @@
 ![alt text](https://github.com/abuzeid-ibrahim/UseItPalyground/blob/master/Sources/%232.png)
 #### <font color="red"> #3 Private Functions </font>
 ![alt text](https://github.com/abuzeid-ibrahim/UseItPalyground/blob/master/Sources/%233.png)
+#### <font color="red"> #3 Make it simple </font>
+![alt text](https://github.com/abuzeid-ibrahim/UseItPalyground/blob/master/Sources/%234.png)
