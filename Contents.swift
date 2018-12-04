@@ -4,11 +4,12 @@
 //  Created by Abuzeid Ibrahim on 11/18/18.
 //  Copyright © 2018 abuzeid. All rights reserved.
 //
-
+import UIKit
 /*(1)
  DON'T MARRY YOUR FRAMWORKS
  -> you could also replace it with just one line of code
  */
+
 protocol ImageLoader{
     func loadImage(url:String)
 }
@@ -74,4 +75,33 @@ private extension ServiceCategoryViewController{
         
     }
 }
+//=============================================================//
+/*(4)
+ Make it faster, add click to button in same line
+ */
 
+extension UIButton {
+    private func actionHandleBlock(action: (() -> Void)? = nil) {
+        struct __ {
+            static var action: (() -> Void)?
+        }
+        if action != nil {
+            __.action = action
+        } else {
+            __.action?()
+        }
+    }
+    
+    @objc private func triggerActionHandleBlock() {
+        actionHandleBlock()
+    }
+    
+    func addAction(control: UIControl.Event, forAction: @escaping () -> Void) {
+        actionHandleBlock(action: forAction)
+        addTarget(self, action: #selector(UIButton.triggerActionHandleBlock), for: control)
+    }
+}
+//How to use
+UIButton().addAction(control: .touchUpInside, forAction: {
+    print("here is the action")
+})
