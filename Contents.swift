@@ -14,9 +14,21 @@ protocol ImageLoader{
 }
 extension ImageLoader{
     func loadImage(url:String){
-        //Write your favourite framework implementation here..
+        //you could give a default implementaion here
     }
 }
+
+final class ImageLoaderImplementor:ImageLoader{
+    //also you could override your favourite framework implementation here..
+}
+
+class MyViewController{
+    var imageLoader:ImageLoader!
+    func viewDidLoad(){
+        imageLoader.loadImage(url: "http.....")
+    }
+}
+
 //=============================================================//
 /*(2)
  Use internal structs to organize your constants
@@ -36,4 +48,30 @@ struct Constants{
     }
 }
 
+//Using
+Constants.Api.baseUrl
+
+
+//=============================================================//
+/*(3)
+ Use private extension to group yor private methods
+ */
+class ServiceCategoryViewController{
+    
+}
+
+private extension ServiceCategoryViewController{
+    func addServiceCategoriesController() {
+        
+        
+    }
+    func updateCategoriesControllerHeight() {
+        
+        
+    }
+    func removeServiceCategoriesController() {
+        
+        
+    }
+}
 
