@@ -5,6 +5,7 @@
 //  Copyright © 2018 abuzeid. All rights reserved.
 //
 import UIKit
+import XCTest
 /*(1)
  DON'T MARRY YOUR FRAMWORKS
  -> you could also replace it with just one line of code
@@ -105,3 +106,55 @@ extension UIButton {
 UIButton().addAction(control: .touchUpInside, forAction: {
     print("here is the action")
 })
+//=============================================================//
+/*(5)
+ Derived Data
+ 
+ location where Xcode stores all kinds of intermediate build results, generated indexes,
+ ,precompiled module files (.pcm). A module is the way how reusable code is organized and shared. Modules were introduced to Clang (the compiler used by Xcode) several years ago, mainly to ensure reasonable and scalable compile times. It was common that for every single import in the source file, megabytes of additional headers had to be included and parsed by the compiler. Thanks to modules, the headers are parsed and compiled just once.
+ 
+ */
+
+
+//=============================================================//
+
+
+//=============================================================//
+/*(6)
+ Avoid extra mocking when you test
+ MVP Architecture
+ /// You need to pass the view  in the instructor to make the code compile
+ // then it's better to inject the view in a method rather than a constructor
+ */
+protocol LoginView {
+    func showEmailNotValidAlert()
+}
+class LoginPresenter{
+    var view:LoginView
+    init(view:LoginView) {
+        self.view = view
+    }
+    func loginClicked(email:String){
+        view.showEmailNotValidAlert()
+    }
+    func isEmailInputsValid(email:String)->Bool{
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: email)
+        
+    }
+}
+class LoginTestCase:XCTest{
+    func testLoginValid() {
+        let presenter = LoginPresenter(view:DummyView())
+        XCTAssertTrue(presenter.isEmailInputsValid(email: "ab@.ads"))
+    }
+}
+class DummyView:LoginView{
+    func showEmailNotValidAlert() {
+        
+    }
+}
+
+///
+
