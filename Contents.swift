@@ -6,6 +6,7 @@
 //
 import UIKit
 import XCTest
+
 /*(1)
  DON'T MARRY YOUR FRAMWORKS
  -> you could also replace it with just one line of code
@@ -157,4 +158,30 @@ class DummyView:LoginView{
 }
 
 ///
+
+//=============================================================//
+/*(7)
+ Never use a static method into closure >> to avoid memory leak
+ */
+typealias SuccessClosure = (Void)->()
+class Logger{
+    static func log(){}
+}
+//func callApi(result:SuccessClosure){
+//    DispatchQueue.global().asyncAfter(deadline: .now() + 0.2, execute: {[weak self] in
+//        Logger.log()//this is the wrong action
+//    })
+//}
+
+//=============================================================//
+/*(8)
+
+For performance reasons, the size of the newly allocated storage might be greater than the requested capacity. Use the array’s capacity property to determine the size of the new storage.
+*/
+
+var b = [String]()
+print(b.capacity)
+
+b.reserveCapacity(1000)
+print(b.capacity)
 
