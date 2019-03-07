@@ -167,11 +167,14 @@ typealias SuccessClosure = (Void)->()
 class Logger{
     static func log(){}
 }
-//func callApi(result:SuccessClosure){
-//    DispatchQueue.global().asyncAfter(deadline: .now() + 0.2, execute: {[weak self] in
-//        Logger.log()//this is the wrong action
-//    })
-//}
+class Controller{
+func callApi(result:SuccessClosure){
+    DispatchQueue.global().asyncAfter(deadline: .now() + 0.2, execute: {[weak self] in
+        Logger.log()//this is the wrong action
+    })
+    }
+    
+}
 
 //=============================================================//
 /*(8)
